@@ -1,6 +1,7 @@
 package com.bsuir.calculator.Controllers;
 
 import com.bsuir.calculator.DTO.RequestValueDTO;
+import com.bsuir.calculator.DTO.ResponseValueDTO;
 import com.bsuir.calculator.Loggers.GlobalLogger;
 import com.bsuir.calculator.Services.CalculationService;
 import jakarta.validation.Valid;
@@ -22,7 +23,7 @@ public class CalculatorController {
     CalculationService calculationService;
 
     @GetMapping("/calculate")
-    public ResponseEntity<HashMap<String, Boolean>> getCalculation(@RequestBody @Valid RequestValueDTO requestValueDTO) {
+    public ResponseEntity<ResponseValueDTO> getCalculation(@RequestBody @Valid RequestValueDTO requestValueDTO) {
         GlobalLogger.logMessage("Success accepted arguments");
         return new ResponseEntity<>(calculationService.calculateResult(requestValueDTO),HttpStatus.ACCEPTED);
     }

@@ -1,6 +1,7 @@
 package com.bsuir.calculator;
 
 import com.bsuir.calculator.DTO.RequestValueDTO;
+import com.bsuir.calculator.DTO.ResponseValueDTO;
 import com.bsuir.calculator.Services.CalculationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,15 @@ class CalculatorApplicationTests {
     CalculationService calculationService;
 
     @Test
-    void CalculationServiceTest() {
-        HashMap<String, Boolean> correctHashMap = new HashMap<>();
-        correctHashMap.put("even", false);
-        correctHashMap.put("prime", true);
-        HashMap<String, Boolean> hashMap = calculationService.calculateResult(new RequestValueDTO(17));
+    void CalculationServiceTest_17() {
+        ResponseValueDTO correctResponseValueDTO = new ResponseValueDTO(17, false, true);
+        assertThat(correctResponseValueDTO, is(calculationService.calculateResult(new RequestValueDTO(17))));
+    }
 
-        assertThat(correctHashMap, is(hashMap));
+    @Test
+    void CalculationServiceTest_24() {
+        ResponseValueDTO correctResponseValueDTO = new ResponseValueDTO(24, true, false);
+        assertThat(correctResponseValueDTO, is(calculationService.calculateResult(new RequestValueDTO(24))));
     }
 
 }
