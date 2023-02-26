@@ -24,6 +24,7 @@ public class CalculationService {
             }
         }
 
+        System.out.println("Test branch");
         resultHashMap.put("prime", isPrime);
         GlobalLogger.logMessage("Success calculated result for argument");
         return resultHashMap;
