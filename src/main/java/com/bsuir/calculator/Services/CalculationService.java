@@ -1,6 +1,7 @@
 package com.bsuir.calculator.Services;
 
 import com.bsuir.calculator.DTO.RequestValueDTO;
+import com.bsuir.calculator.Loggers.GlobalLogger;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -19,7 +20,7 @@ public class CalculationService {
         }
 
         resultHashMap.put("prime", isPrime);
-
+        GlobalLogger.logMessage("Success calculated result for argument");
         return resultHashMap;
     }
 }
