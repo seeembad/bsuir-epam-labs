@@ -17,7 +17,6 @@ public class CalculationServiceCache {
 
     public void cachingValue(RequestValueDTO requestValueDTO, ResponseValueDTO responseValueDTO) {
         cacheHashMap.put(requestValueDTO.getValue(), responseValueDTO);
-        System.out.println(cacheHashMap);
     }
 
     public ResponseValueDTO getCachedValue(RequestValueDTO requestValueDTO) {
