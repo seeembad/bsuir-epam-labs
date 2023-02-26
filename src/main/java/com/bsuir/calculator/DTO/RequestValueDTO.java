@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 public class RequestValueDTO {
 
     @NotNull
-    @Digits(integer = 7, fraction = 0)
+    @Digits(integer = 7, fraction = 0, message = "max 7nums in integer")
     private int value;
 
     public RequestValueDTO() {
