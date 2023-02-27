@@ -20,6 +20,6 @@ public class RequestsController {
         hashMap.put("requestsAccepted", RequestCounter.getRequestsAccepted());
 
         GlobalLogger.logMessage("RequestCounter Controller.");
-        return new ResponseEntity<>(hashMap, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 }

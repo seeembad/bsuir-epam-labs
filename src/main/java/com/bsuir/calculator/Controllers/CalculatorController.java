@@ -26,7 +26,7 @@ public class CalculatorController {
         GlobalLogger.logMessage("Success accepted arguments");
         synchronized (this) {
             RequestCounter.requestSuccessAccepted();
+            return new ResponseEntity<>(calculationService.calculateResult(requestValueDTO),HttpStatus.OK);
         }
-        return new ResponseEntity<>(calculationService.calculateResult(requestValueDTO),HttpStatus.ACCEPTED);
     }
 }
