@@ -1,6 +1,6 @@
-package com.bsuir.calculator.Advice;
+package com.bsuir.calculator.advice;
 
-import com.bsuir.calculator.Loggers.GlobalLogger;
+import com.bsuir.calculator.loggers.GlobalLogger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -17,18 +17,21 @@ public class ApplicationExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> invalidArgumentsException(MethodArgumentNotValidException exception) {
+    public Map<String, String> invalidArgumentsException(
+            MethodArgumentNotValidException exception) {
         Map<String, String> errorMap = new HashMap<>();
         exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
             errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
         } );
 
+        GlobalLogger.logMessage("Success exception handled, BAD_REQUEST");
         return errorMap;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<HashMap<String, String>> httpMessageNotReadableException(HttpMessageNotReadableException exception) {
+    public ResponseEntity<HashMap<String, String>> httpMessageNotReadableException(
+            HttpMessageNotReadableException exception) {
         HashMap<String, String> hashMap = new HashMap<>();
 
         hashMap.put("reason", "invalid argument");
@@ -42,8 +45,11 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleUncheckedException(Exception ex) {
         if (ex instanceof NullPointerException) {
+            GlobalLogger.logMessage("Success exception handled, BAD_REQUEST");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        GlobalLogger.logMessage("Success exception handled, INTERNAL_SERVER_ERROR");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 }

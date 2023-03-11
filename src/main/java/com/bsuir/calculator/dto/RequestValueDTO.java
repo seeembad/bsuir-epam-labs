@@ -1,4 +1,4 @@
-package com.bsuir.calculator.DTO;
+package com.bsuir.calculator.dto;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;

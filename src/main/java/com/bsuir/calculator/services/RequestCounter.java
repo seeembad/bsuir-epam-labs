@@ -1,6 +1,6 @@
-package com.bsuir.calculator.Services;
+package com.bsuir.calculator.services;
 
-import com.bsuir.calculator.Loggers.GlobalLogger;
+import com.bsuir.calculator.loggers.GlobalLogger;
 import org.springframework.stereotype.Service;
 
 @Service
