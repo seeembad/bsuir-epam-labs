@@ -1,8 +1,8 @@
-package com.bsuir.calculator.Services;
+package com.bsuir.calculator.services;
 
-import com.bsuir.calculator.DTO.RequestValueDTO;
-import com.bsuir.calculator.DTO.ResponseValueDTO;
-import com.bsuir.calculator.Loggers.GlobalLogger;
+import com.bsuir.calculator.dto.RequestValueDTO;
+import com.bsuir.calculator.dto.ResponseValueDTO;
+import com.bsuir.calculator.loggers.GlobalLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

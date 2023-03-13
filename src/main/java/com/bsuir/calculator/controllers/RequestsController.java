@@ -1,7 +1,7 @@
-package com.bsuir.calculator.Controllers;
+package com.bsuir.calculator.controllers;
 
-import com.bsuir.calculator.Loggers.GlobalLogger;
-import com.bsuir.calculator.Services.RequestCounter;
+import com.bsuir.calculator.loggers.GlobalLogger;
+import com.bsuir.calculator.services.RequestCounter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

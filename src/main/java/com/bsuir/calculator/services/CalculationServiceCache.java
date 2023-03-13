@@ -1,15 +1,16 @@
-package com.bsuir.calculator.Services;
+package com.bsuir.calculator.services;
 
 
-import com.bsuir.calculator.DTO.RequestValueDTO;
-import com.bsuir.calculator.DTO.ResponseValueDTO;
+import com.bsuir.calculator.dto.RequestValueDTO;
+import com.bsuir.calculator.dto.ResponseValueDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class CalculationServiceCache {
-    private final HashMap<Integer, ResponseValueDTO> cacheHashMap = new HashMap<>();
+    private final Map<Integer, ResponseValueDTO> cacheHashMap = new HashMap<>(); // default map
 
     public boolean isContainValue(RequestValueDTO requestValueDTO) {
         return cacheHashMap.containsKey(requestValueDTO.getValue());
