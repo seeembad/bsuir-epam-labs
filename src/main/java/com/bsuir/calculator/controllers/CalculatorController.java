@@ -5,6 +5,7 @@ import com.bsuir.calculator.dto.ResponseValueDTO;
 import com.bsuir.calculator.loggers.GlobalLogger;
 import com.bsuir.calculator.models.Result;
 import com.bsuir.calculator.repositories.IResultRepository;
+import com.bsuir.calculator.services.AverageCalculationService;
 import com.bsuir.calculator.services.CalculationService;
 import com.bsuir.calculator.services.RequestCounter;
 import jakarta.validation.Valid;
@@ -15,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -23,6 +25,8 @@ import java.util.concurrent.CompletableFuture;
 @Validated
 public class CalculatorController {
 
+    @Autowired
+    AverageCalculationService averageCalculationService;
 
     @Autowired
     CalculationService calculationService;
@@ -37,7 +41,7 @@ public class CalculatorController {
         synchronized (this) {
             RequestCounter.requestSuccessAccepted();
             iResultRepository.save(new Result(calculationService.calculateResult(requestValueDTO)));
-            return new ResponseEntity<>(calculationService.calculateResult(requestValueDTO),HttpStatus.OK);
+            return new ResponseEntity<>(calculationService.calculateResult(requestValueDTO), HttpStatus.OK);
         }
     }
 
@@ -60,5 +64,14 @@ public class CalculatorController {
         RequestCounter.requestSuccessAccepted();
         CompletableFuture.runAsync(() -> calculationService.saveAllResults(requestValueDTOS));
         return new ResponseEntity<>("saveAllResults", HttpStatus.OK);
+
+    }
+
+    @GetMapping("/calculate/average")
+    public ResponseEntity<Map<String, Double>> averageCalculations(
+            @RequestBody @Valid List<RequestValueDTO> requestValueDTOS) {
+        RequestCounter.requestSuccessAccepted();
+        return new ResponseEntity<>(averageCalculationService.getAverage(requestValueDTOS), HttpStatus.OK);
+
     }
 }
